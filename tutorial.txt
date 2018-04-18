@@ -1,0 +1,25 @@
+Project Overview
+````````````````
+Create an app that can accept any street name and get the weather.
+Two steps:
+1. Use Google Map Geocoding API to convert street name to coordinates
+2. Use Darksky API to fetch weather data using the coordinates
+
+Sign up for Google Map Geocoding API
+````````````````````````````````````
+To make request to Google Map Geocoding API.
+Send company name or street name to google,
+get back full address, latitude & longitude.
+
+Go to https://console.developers.google.com/apis/ to get api key
+Go to docs for Google Map Geocoding API
+Install json view chrome extension
+
+Getting Darksky API key:
+```````````````````````
+Go to darksky.net/dev and get api key and use it in app.js
+
+Using axios:
+````````````
+Axis has built-in promises.
+npm install axios --save
