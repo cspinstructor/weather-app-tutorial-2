@@ -19,6 +19,16 @@ Getting Darksky API key:
 ```````````````````````
 Go to darksky.net/dev and get api key and use it in app.js
 
+Create new project:
+``````````````````
+Create new folder called: weather-app
+create app.js
+create package.json by npm init
+
+Using yargs:
+```````````
+npm install yargs --save
+
 Using axios:
 ````````````
 Axis has built-in promises.
