@@ -4,14 +4,25 @@ const express = require('express');
 
 const server = express();
 
-server.get('/:addr', (req, res) => {
-  const addr = req.params.addr;
-  const locationReq = `https://maps.googleapis.com/maps/api/geocode/json?address=${addr}&key=AIzaSyAn7h3tsW_p0md5iISNFzLcJDoRGRgjWPg`;
+// function ignoreFavicon(req, res, next) {
+//   if (req.originalUrl === '/favicon.ico') {
+//     res.status(204).json({nope: true});
+//   } else {
+//     next();
+//   }
+// }
 
+// server.use(ignoreFavicon);
+
+server.get('/', (req, res) => {
+  //const addr = req.params.addr;   /:addr
+  const addr = req.query.addr; //  /?addr=
+  console.log(addr);
+  const locationReq = `https://maps.googleapis.com/maps/api/geocode/json?address=${addr}&key=AIzaSyAn7h3tsW_p0md5iISNFzLcJDoRGRgjWPg`;
 
   axios.get(locationReq).then((response) => {
     if (response.data.status === 'ZERO_RESULTS'){
-      console.log('Unable to find that address');
+      throw new Error('Unable to find that address');
       res.send('Unable to find that address');
     } else {
       const addr = response.data.results[0].formatted_address;
@@ -28,8 +39,9 @@ server.get('/:addr', (req, res) => {
     });
   })
   .catch((error) => {
-    console.log('ERROR CODE: ', error);
-    res.sendStatus({error: error.code});
+    console.log('ERROR: ', error.message);
+    res.send(error.message);
+    //res.send(error.message);
   });
 });
 

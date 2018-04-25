@@ -39,3 +39,9 @@ Using express:
 ``````````````
 npm install express --save
 See:  app-server.js
+See:  playground/server.js
+
+Using Handlebars:
+`````````````````
+npm install hbs --save
+See: app-server-hbs.js
