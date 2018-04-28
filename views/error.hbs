@@ -4,12 +4,12 @@
 {{> stylerefs}}
 <body>
 
-  <!-- Navbar -->
-  {{> navbar}}
+<!-- Navbar -->
+{{> navbar}}
 
 <!-- Header -->
-<header class="w3-container w3-green w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">WEATHER RESULT</h1>
+<header class="w3-container w3-red w3-center" style="padding:64px 16px">
+  <h1 class="w3-margin w3-jumbo">ERROR</h1>
 </header>
 
 <!-- First Grid -->
@@ -17,9 +17,7 @@
   <div class="w3-content w3-center">
 
       <h5>
-        <p>Address: {{address}}</p>
-        <p>Summary: {{summary}}</p>
-        <p>Temperature: {{temperature}}</p>
+        {{errorMsg}}
       </h5>
 
   </div>

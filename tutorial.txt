@@ -44,8 +44,15 @@ See:  playground/server.js
 Using Handlebars:
 `````````````````
 npm install hbs --save
+using partials
 See: app-server-hbs.js
 
 Using Postman:
 ``````````````
 Download and install https://www.getpostman.com/
+
+Using css:
+``````````
+See app-server-hbs.js
+Parsing forms:
+http://shiya.io/parsing-forms-with-multiple-submit-buttons-in-node-js-with-express-4/
