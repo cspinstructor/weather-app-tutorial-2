@@ -31,7 +31,7 @@ npm install yargs --save
 
 Using axios:
 ````````````
-Axis has built-in promises.
+Axios has built-in promises.
 npm install axios --save
 See: app.js
 
@@ -45,3 +45,7 @@ Using Handlebars:
 `````````````````
 npm install hbs --save
 See: app-server-hbs.js
+
+Using Postman:
+``````````````
+Download and install https://www.getpostman.com/

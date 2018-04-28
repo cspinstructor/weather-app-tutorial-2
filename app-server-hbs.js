@@ -6,7 +6,7 @@ const hbs = require('hbs');
 const server = express();
 const bodyParser = require('body-parser');
 
-server.use(bodyParser.json());
+// server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true}));
 
 // function ignoreFavicon(req, res, next) {
@@ -19,10 +19,29 @@ server.use(bodyParser.urlencoded({ extended: true}));
 
 // server.use(ignoreFavicon);
 
+server.use(express.static(__dirname + '/public'));
 server.set('view engine', 'hbs');
 
-server.post('/', (req, res) => {
+server.get('/', (req, res) => {
+  console.log('render home.hbs');
+  res.render('home.hbs');
+  //const addr = req.query.addr; //  /?addr=
+  //console.log(addr);
+});
 
+server.post('/form', (req,res) => {
+  console.log('from button Get-Started rendering form2.hbs');
+  //res.redirect('/');
+  res.render('form2.hbs');
+});
+
+server.post('/gohome', (req, res) => {
+  console.log('from button Home, rendering home.hbs');
+  res.render('home.hbs');
+});
+
+server.post('/getweather', (req, res) => {
+  console.log('from button Send, rendering result.hbs');
   const addr = req.body.address;
   const locationReq = `https://maps.googleapis.com/maps/api/geocode/json?address=${addr}&key=AIzaSyAn7h3tsW_p0md5iISNFzLcJDoRGRgjWPg`;
 
@@ -38,11 +57,18 @@ server.post('/', (req, res) => {
       return axios.get(weatherReq);
     }
   }).then((response) => {
-    res.send({
+    // res.send({
+    //   address: addr,
+    //   summary: response.data.currently.summary,
+    //   temperature: (response.data.currently.temperature-32)*0.5556,
+    // });
+    let temperature = (response.data.currently.temperature-32)*0.5556;
+    temperature = temperature.toFixed(2);
+    res.render('result.hbs', {
       address: addr,
       summary: response.data.currently.summary,
-      temperature: (response.data.currently.temperature-32)*0.5556,
-    });
+      temperature: `${temperature} C`,
+    })
   })
   .catch((error) => {
     console.log('ERROR: ', error.message);
@@ -51,11 +77,7 @@ server.post('/', (req, res) => {
   });
 });
 
-server.get('/', (req, res) => {
-  res.render('getweather.hbs');
-  //const addr = req.query.addr; //  /?addr=
-  //console.log(addr);
-});
+
 
 
 
@@ -90,4 +112,6 @@ server.get('/', (req, res) => {
 //   });
 // });
 
-server.listen(3000);
+server.listen(3000, () => {
+  console.log("server started on port 3000");
+});

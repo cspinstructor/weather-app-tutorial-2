@@ -2,6 +2,8 @@ const express = require('express');
 const server = express();
 
 server.get('/', (req, res) => {
+  const date = new Date().toDateString();
+  console.log(date);
   res.send(`
     <html>
       <body>
@@ -33,4 +35,4 @@ server.get('/getaddr', (req, res) => {
     lng: longitude,
   });
 });
-server.listen(80);
+server.listen(3000);
