@@ -56,3 +56,7 @@ Using css:
 See app-server-hbs.js
 Parsing forms:
 http://shiya.io/parsing-forms-with-multiple-submit-buttons-in-node-js-with-express-4/
+
+Using git:
+`````````
+https://help.github.com/articles/connecting-to-github-with-ssh/
