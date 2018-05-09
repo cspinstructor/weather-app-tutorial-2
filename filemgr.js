@@ -8,15 +8,16 @@ const getAllData = () => {
   try {
     const readfile = fs.readFileSync('mydata.json', 'utf8');
     obj = JSON.parse(readfile);
-    obj.table.forEach((value)=>{
-      console.log(value);
-    });
+    // obj.table.forEach((value)=>{
+    //   console.log(value);
+    // });
+    return obj.table;
   } catch (err) {
     console.log('File not found');
   }
 };
 
-const insertData = (newdata) => {
+const saveData = (newdata) => {
   try {
     const readfile = fs.readFileSync('mydata.json', 'utf8');
     obj = JSON.parse(readfile);
@@ -28,5 +29,5 @@ const insertData = (newdata) => {
 
 module.exports = {
   getAllData,
-  insertData,
+  saveData,
 }

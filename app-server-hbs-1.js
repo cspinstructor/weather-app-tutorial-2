@@ -37,25 +37,13 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 hbs.registerHelper('list', (items, options) => {
  items = filemgr.getAllData();
- //var out = "<table>";
- //out = out + "<tr><th>Address</th><th>Summary</th><th>Temp</th></tr>";
- // for(var i=0, l=items.length; i<l; i++){
- //   out = out + "<tr><td>" + options.fn(items[i]) + "</td></tr>";
- // }
+ var out = "<table>";
 
- //out = out + "<tr>";
-
-
- var out = "<tr><th>Address</th><th>Summary</th><th>Temp</th></tr>";
-
- const length = items.length;
-
- for(var i=0; i<length; i++){
-   out = out +  options.fn(items[i]);
-   console.log(options.fn(items[i]));
+ for(var i=0, l=items.length; i<l; i++){
+   out = out + "<tr><td>" + options.fn(items[i]) + "</td></tr>";
  }
 
- return out;
+ return out + "</table>";
 });
 
 

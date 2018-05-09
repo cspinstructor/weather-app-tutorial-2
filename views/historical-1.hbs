@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+{{> stylerefs}}
+<body>
+
+  <!-- Navbar -->
+  {{> navbar}}
+
+<!-- Header -->
+<header class="w3-container w3-green w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">HISTORICAL WEATHER DATA</h1>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container w3-center">
+  <div class="w3-table-all w3-centered">
+    {{#list items}} {{address}} {{summary}} {{temperature}}{{/list}}
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+{{> footer}}
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>
