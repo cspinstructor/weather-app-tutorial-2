@@ -54,9 +54,48 @@ Download and install https://www.getpostman.com/
 Using css:
 ``````````
 See app-server-hbs.js
+Get templates from:
+https://www.w3schools.com/w3css/w3css_templates.asp
 Parsing forms:
 http://shiya.io/parsing-forms-with-multiple-submit-buttons-in-node-js-with-express-4/
 
 Using git:
 `````````
 https://help.github.com/articles/connecting-to-github-with-ssh/
+
+Adding tables for historical weather data:
+`````````````````````````````````````````
+
+Deploying to heroku
+```````````````````
+signup at www.heroku.company
+Download heroku-cli from:
+https://devcenter.heroku.com/
+Then follow the instructions here on how to deploy to heroku:
+https://devcenter.heroku.com/articles/git
+
+In git-bash do:
+heroku --help
+heroku login
+heroku keys:add
+heroku keys
+heroku keys:remove   [ if necessary ]
+ssh -v git@heroku.com
+
+Make sure you have the response:
+Authentication succeeded (publickey)
+
+To see environment variables:
+env
+
+[ or in cmd: set ]
+
+Add this script line in package.json:
+"start": "node app-server-hbs.js"
+
+See package.json file. Then test it:
+
+npm start
+
+If you get json error, use this to check:
+https://jsonlint.com/

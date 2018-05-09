@@ -7,6 +7,8 @@ const server = express();
 const bodyParser = require('body-parser');
 const filemgr = require('./filemgr');
 
+const port = process.env.PORT || 3000;
+
 // server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true}));
 
@@ -125,6 +127,6 @@ server.post('/getweather', (req, res) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log("server started on port 3000");
+server.listen(port, () => {
+  console.log(`server started on port ${port}`);
 });
