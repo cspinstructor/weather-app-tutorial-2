@@ -14,6 +14,7 @@ const getAllData = () => {
     return obj.table;
   } catch (err) {
     console.log('File not found');
+    return obj.table;
   }
 };
 
@@ -27,7 +28,16 @@ const saveData = (newdata) => {
   fs.writeFileSync('mydata.json',JSON.stringify(obj), 'utf8');
 }
 
+const deleteAll = () => {
+  obj.table = [];
+  try {
+    fs.unlinkSync('mydata.json');
+  } catch (err) {}
+
+}
+
 module.exports = {
   getAllData,
   saveData,
+  deleteAll,
 }

@@ -8,13 +8,16 @@
   {{> navbar}}
 
 <!-- Header -->
-<header class="w3-container w3-green w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">HISTORICAL WEATHER DATA</h1>
+<header class="w3-container w3-green w3-center" style="padding:64px 16px">
+  <h1 class="w3-margin w3-xxxlarge">HISTORICAL WEATHER DATA</h1>
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-center">
   <div class="w3-table-all">
+    <form action="/" method="post">
+       <button class="w3-button w3-lime w3-large" type="submit" formaction="/delete">Delete All Records</button>
+    </form >
     <table>
       {{#list items}} <tr><td>{{address}}</td> <td>{{summary}}</td> <td>{{temperature}}</td></tr> {{/list}}
     </table>
