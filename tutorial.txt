@@ -99,3 +99,18 @@ npm start
 
 If you get json error, use this to check:
 https://jsonlint.com/
+
+Then push to github:
+
+git add .
+git commit -m "Added start script and heroku port"
+git push
+
+Then do heroku:
+
+heroku create
+git push heroku
+
+heroku open
+
+Alternatively, copy the successful push url and paste into chrome.

@@ -5,7 +5,9 @@ const hbs = require('hbs');
 
 const server = express();
 const bodyParser = require('body-parser');
-const filemgr = require('./filemgr');
+const filemgr = require('./filemgr1');
+
+const port = process.env.PORT || 3000;
 
 // server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true}));
@@ -37,13 +39,18 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 hbs.registerHelper('list', (items, options) => {
  items = filemgr.getAllData();
- var out = "<table>";
+ console.log('from register helper...');
+ //console.log(items);
+ var out = "<tr><th>Address</th><th>Summary</th><th>Temp</th></tr>";
 
- for(var i=0, l=items.length; i<l; i++){
-   out = out + "<tr><td>" + options.fn(items[i]) + "</td></tr>";
+ const length = items.length;
+
+ for(var i=0; i<length; i++){
+   out = out +  options.fn(items[i]);
+   //console.log(options.fn(items[i]));
  }
-
- return out + "</table>";
+ console.log(out);
+ return out;
 });
 
 
@@ -67,7 +74,7 @@ server.get('/historical', (req, res) => {
 });
 
 server.post('/form', (req,res) => {
-  console.log('from button Get-Started rendering form2.hbs');
+  console.log('from button Get-Started rendering form.hbs');
   //res.redirect('/');
   res.render('form.hbs');
 });
@@ -75,6 +82,12 @@ server.post('/form', (req,res) => {
 server.post('/gohome', (req, res) => {
   console.log('from button Home, rendering home.hbs');
   res.render('home.hbs');
+});
+
+server.post('/delete', (req, res) => {
+  console.log('from delete button in historical.hbs, rendering historical.hbs');
+  filemgr.deleteAll();
+  res.render('historical.hbs');
 });
 
 server.post('/getweather', (req, res) => {
@@ -115,6 +128,6 @@ server.post('/getweather', (req, res) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log("server started on port 3000");
+server.listen(port, () => {
+  console.log(`server started on port ${port}`);
 });

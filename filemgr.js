@@ -1,32 +1,47 @@
-const fs = require('fs');
+// ----- Uses Mongodb and promises to save data ---------
+const {MongoClient} = require('mongodb');
+const fs = MongoClient
 
 var obj = {
   table : [],
 };
 
+
 const getAllData = () => {
-  try {
-    const readfile = fs.readFileSync('mydata.json', 'utf8');
-    obj = JSON.parse(readfile);
-    // obj.table.forEach((value)=>{
-    //   console.log(value);
-    // });
-    return obj.table;
-  } catch (err) {
-    console.log('File not found');
-    return obj.table;
-  }
+  return new Promise((resolve, reject) => {
+    MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true}, (err, client) => {
+      if (err) {
+        reject('Unable to connect to MongoDB server');
+      }
+      console.log('Connected to MongoDB server');
+      const db = client.db('TestDb');
+      db.collection('TestCollection').find().toArray().then((docs) => {
+        resolve(docs);
+      }, (err) => {
+        reject('Unable to fetch todos', err);
+      });
+      client.close();
+    });
+  });
 };
 
 const saveData = (newdata) => {
-  try {
-    const readfile = fs.readFileSync('mydata.json', 'utf8');
-    obj = JSON.parse(readfile);
-  } catch (err) {}
-
-  obj.table.push(newdata);
-  fs.writeFileSync('mydata.json',JSON.stringify(obj), 'utf8');
-}
+  return new Promise((resolve, reject) => {
+    MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true}, (err, client) => {
+      if (err) {
+        reject('Unable to connect to MongoDB server');
+      }
+      console.log('Connected to MongoDB server');
+      const db = client.db('TestDb');
+      db.collection('TestCollection').find().toArray().then((docs) => {
+        resolve(docs);
+      }, (err) => {
+        reject('Unable to fetch todos', err);
+      });
+      client.close();
+    });
+  });
+};
 
 const deleteAll = () => {
   obj.table = [];

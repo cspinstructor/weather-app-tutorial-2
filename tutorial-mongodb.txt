@@ -1,0 +1,45 @@
+MongoDB
+```````
+Download and install mongodb:
+
+https://www.mongodb.com/
+
+After installing, copy the bin folder from:
+
+C:\Program Files\MongoDB\Server\3.6\bin
+
+to: C:\bin   and rename it as C:\mongo
+
+Create a folder called C:\mongo-data
+
+Start mongod: ./mongod --dbpath C:\mongo-data
+
+To test, do:
+
+C:\mongo\mongo
+
+>db.Test.insert({name: 'apple'})
+>db.Test.find()
+>exit
+
+Robo3T
+`````
+Download and install Robo3T from: https://robomongo.org/
+
+mongodb client
+``````````````
+npm install mongodb --save
+
+create database and collections:
+See playground/mongodb-connect.js
+
+find documents:
+See playground/mongodb-find.js
+
+count documents:
+See playground/mongodb-count.js
+
+delete documents:
+See playground/mongodb-delete.js
+
+update documents:

@@ -11,26 +11,42 @@ const port = process.env.PORT || 3000;
 
 
 server.use(bodyParser.urlencoded({ extended: true}));
+
 server.use(express.static(__dirname + '/public'));
 server.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
-var weatherdata;
+var getMongoData = (items) => {
+  return new Promise((resolve, reject) => {
+    items = filemgr.getAllData();
+    if(items === undefined) {
+      reject(items);
+    } else {
+      resolve(items);
+    }
+  });
+};
+
 hbs.registerHelper('list', (items, options) => {
- items = weatherdata;
- console.log('from register helper...');
- //console.log(items);
- var out = "<tr><th>Address</th><th>Summary</th><th>Temp</th></tr>";
+ getMongoData(items).then((res) => {
+   console.log('from register helper...');
+   console.log(res);
+   var out = "<tr><th>Address</th><th>Summary</th><th>Temp</th></tr>";
 
- const length = items.length;
+   const length = res.length;
 
- for(var i=0; i<length; i++){
-   out = out +  options.fn(items[i]);
-   //console.log(options.fn(items[i]));
- }
- console.log(out);
- return out;
+   for(var i=0; i<res; i++){
+     out = out +  options.fn(res[i]);
+     console.log(options.fn(res[i]));
+   }
+
+   return out;
+ }, (errorMessage) => {
+   console.log('Unable to get Mongo data');
+ });
+
 });
+
 
 server.get('/', (req, res) => {
   console.log('render home.hbs');
@@ -48,14 +64,7 @@ server.get('/form', (req, res) => {
 });
 
 server.get('/historical', (req, res) => {
-  filemgr.getAllData().then((result) => {
-  
-    weatherdata = result;
-    res.render('historical.hbs');
-  }).catch((errorMessage) => {
-    console.log(errorMessage)
-  });
-
+  res.render('historical.hbs');
 });
 
 server.post('/form', (req,res) => {
