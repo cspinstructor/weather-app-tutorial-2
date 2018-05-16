@@ -35,8 +35,6 @@ hbs.registerHelper('list', (items, options) => {
 server.get('/', (req, res) => {
   console.log('render home.hbs');
   res.render('home.hbs');
-  //const addr = req.query.addr; //  /?addr=
-  //console.log(addr);
 });
 
 server.get('/home', (req, res) => {
@@ -49,7 +47,7 @@ server.get('/form', (req, res) => {
 
 server.get('/historical', (req, res) => {
   filemgr.getAllData().then((result) => {
-  
+
     weatherdata = result;
     res.render('historical.hbs');
   }).catch((errorMessage) => {
@@ -71,8 +69,15 @@ server.post('/gohome', (req, res) => {
 
 server.post('/delete', (req, res) => {
   console.log('from delete button in historical.hbs, rendering historical.hbs');
-  filemgr.deleteAll();
-  res.render('historical.hbs');
+
+  filemgr.deleteAll().then((result) => {
+    weatherdata = result;
+    console.log('deleteall reached here');
+    res.render('historical.hbs');
+  }).catch((errorMessage) => {
+    console.log('error in deleteall');
+  });
+
 });
 
 server.post('/getweather', (req, res) => {

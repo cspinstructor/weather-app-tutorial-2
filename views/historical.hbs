@@ -14,14 +14,14 @@
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-center">
-  <div class="w3-table-all">
+
     <form action="/" method="post">
        <button class="w3-button w3-lime w3-large" type="submit" formaction="/delete">Delete All Records</button>
     </form >
-    <table>
+    <table class="w3-table-all w3-centered">
       {{#list items}} <tr><td>{{address}}</td> <td>{{summary}}</td> <td>{{temperature}}</td></tr> {{/list}}
     </table>
-  </div>
+
 </div>
 
 
