@@ -2,8 +2,10 @@
 const {MongoClient} = require('mongodb');
 const fs = MongoClient
 
-//--  for development: 'mongodb://localhost:27017'
-const database = 'mongodb://inti2018:inti2018@ds259255.mlab.com:59255/weatherapp'
+//--  for development:
+const database = 'mongodb://localhost:27017'
+//-- for deployment:
+//const database = 'mongodb://inti2018:inti2018@ds259255.mlab.com:59255/weatherapp'
 
 var obj = {
   table : [],
@@ -40,8 +42,8 @@ const saveData = (newdata) => {
         if (err) {
           reject(`Unable to insert ${err}`);
         }
-        const timestamp = JSON.stringify(result.ops[0]._id.getTimestamp())
-        resolve(timestamp);
+        //const timestamp = JSON.stringify(result.ops[0]._id.getTimestamp())
+        resolve(result);
       });
       client.close();
     });
