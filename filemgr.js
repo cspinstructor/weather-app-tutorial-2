@@ -2,6 +2,9 @@
 const {MongoClient} = require('mongodb');
 const fs = MongoClient
 
+//--  for development: 'mongodb://localhost:27017'
+const database = 'mongodb://inti2018:inti2018@ds259255.mlab.com:59255/weatherapp'
+
 var obj = {
   table : [],
 };
@@ -9,7 +12,7 @@ var obj = {
 
 const getAllData = () => {
   return new Promise((resolve, reject) => {
-    MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true}, (err, client) => {
+    MongoClient.connect(database, {useNewUrlParser: true}, (err, client) => {
       if (err) {
         reject('Unable to connect to MongoDB server');
       }
@@ -27,7 +30,7 @@ const getAllData = () => {
 
 const saveData = (newdata) => {
   return new Promise((resolve, reject) => {
-    MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true}, (err, client) => {
+    MongoClient.connect(database, {useNewUrlParser: true}, (err, client) => {
       if (err) {
         reject('Unable to connect to MongoDB server');
       }
@@ -47,7 +50,7 @@ const saveData = (newdata) => {
 
 const deleteAll = () => {
   return new Promise((resolve, reject) => {
-    MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true}, (err, client) => {
+    MongoClient.connect(database, {useNewUrlParser: true}, (err, client) => {
       if (err) {
         reject('Unable to connect to MongoDB server');
       }

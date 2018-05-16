@@ -100,6 +100,20 @@ npm start
 If you get json error, use this to check:
 https://jsonlint.com/
 
+Preparing mongodb:
+`````````````````
+goto mlab.com
+Create New, Sandbox Free, East Virginia
+Database Name: weatherapp
+Click on the new weatherapp and click on Users
+Add new database user:
+username: inti2018
+passwd: inti2018
+
+Copy:
+mongodb://<dbuser>:<dbpassword>@ds259255.mlab.com:59255/weatherapp
+
+
 Then push to github:
 
 git add .
@@ -110,7 +124,8 @@ Then do heroku:
 
 heroku create
 git push heroku
-
+[ or git push heroku master ]
 heroku open
 
 Alternatively, copy the successful push url and paste into chrome.
+https://guarded-springs-94760.herokuapp.com
